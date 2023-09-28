@@ -23,6 +23,6 @@ from core import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("rest_framework.urls")),
-    path("api/", include("spend.urls")),
-    path("api/", include("revenue.urls")),
+    path("api/spend/", include("spend.urls")),
+    path("api/revenue/", include("revenue.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
