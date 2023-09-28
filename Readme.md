@@ -35,5 +35,23 @@ The /api/revenue/ endpoint allows you to retrieve revenue statistics, with the o
 
 The /api/spend/ endpoint enables you to obtain expenditure statistics, with the ability to filter by date and product name. You can also filter the results by date and product name. The endpoint returns a queryset of the SpendStatistic model, including aggregated sums of spend, impressions, clicks, conversion, and associated revenue values from the RevenueStatistic model.
 
+# Filtering Data
+You can filter the data in the following ways:
+
+* Filtering by Date
+To filter data within a specific date range, use the min_date and max_date parameters in the URL:
+> /api/spend/?min_date=2023-09-01&max_date=2023-09-10
+
+Filters data from September 1st to September 10th.
+
+* Filtering by Name
+
+To filter data by product name, use the name parameter in the URL:
+
+> /api/spend/?name=ProductA 
+
+Filters data by the product name "ProductA."
+
+(All those filters also work with /api/revenue/)
 
 

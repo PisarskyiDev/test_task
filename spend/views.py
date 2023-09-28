@@ -1,8 +1,15 @@
 from django.db.models import Sum
 from rest_framework import generics
 
+from core.filter import Filter
 from .models import SpendStatistic
 from .serializers import SpendStatisticSerializer
+
+
+class SpendStatisticFilter(Filter):
+    class Meta:
+        model = SpendStatistic
+        fields = []
 
 
 class SpendStatisticViews(generics.ListAPIView):
@@ -18,3 +25,9 @@ class SpendStatisticViews(generics.ListAPIView):
         .order_by("date", "name")
     )
     serializer_class = SpendStatisticSerializer
+    filter_backends = Filter.get_filter_backend()
+    filter_set_class = Filter
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return self.filter_set_class(self.request.GET, queryset=queryset).qs
